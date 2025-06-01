@@ -1,0 +1,201 @@
+/* tout le site */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    text-align: center;
+    padding: 20px;
+}
+#playerForm {
+    max-width: 300px;
+    margin: 50px auto;
+    padding: 20px 30px;
+    background: #fdfdfe;
+    border: 2px solid #0d13da;
+    border-radius: 10px;
+    text-align: center
+}
+
+
+#playerForm input[type="text"] {
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 2px solid #0d13da;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+
+#buton_debut {
+    margin-top: 15px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+#buton_debut:hover {
+	cursor: pointer;
+  background-color: #0056b3; /* Couleur au survol */
+}
+
+
+
+/* Titre */
+#titre {
+    font-weight: bold;
+    color: #2eafdc;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/*grille*/
+#game-board {
+    postion: relative;
+    display: grid;
+    grid-template-columns: repeat(7, 60px);
+    grid-template-rows: repeat(6, 60px);
+    gap: 12px;
+    background-color: #0d13da; 
+    padding: 100px 35px 25px 35px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    width: fit-content;
+	z-index: 1;
+}
+
+/* Conteneur de la grille */
+#game-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 40px;
+}
+
+
+/* Logos  */
+#logo {
+	position: absolute;
+	top: 10px; 
+    left: 38%;
+    transform: translateX(-50%);
+    width: 80px;
+	z-index: 2;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+#logo2 {
+	position: absolute;
+	top: 15px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+	z-index: 2;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+#logo3 {
+	position: absolute;
+	top: 10px; 
+    left: 62%;
+    transform: translateX(-50%);
+    width: 80px;
+	z-index: 2;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+
+
+/* Cases vides */
+.cell {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition:transform 0.2s;
+    box-sizing: border-box;
+}
+
+.cell:hover {
+    transform: scale(1.1);
+}
+
+/* Hover selon le joueur */
+#game-board.hover-red .cell:hover {
+    background-color: #ec6565;
+}
+
+#game-board.hover-yellow .cell:hover {
+    background-color: #fcf089;
+}
+
+/* Pions */
+.red {
+    background-color: red !important;
+}
+
+.yellow {
+    background-color: gold !important;
+}
+
+/* cases brille quand victoire */
+.cell.win {
+    animation: pulse 0.6s ease-in-out infinite alternate;
+    box-shadow: 0 0 15px 5px gold;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+/* statut des joueurs au fil de la partie */
+#status {
+    font-size: 1.4em;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #444;
+    transition: all 0.3s ease-in-out;
+}
+
+/* message victoire */
+#status.win-message {
+    color: #d43f00;
+    font-size: 1.8em;
+    text-shadow: 2px 2px 5px #ffa;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+ /*change l'ombre en lumiere*/
+@keyframes glow {
+    from { text-shadow: 0 0 10px gold; }
+    to { text-shadow: 0 0 20px orange; }
+}
+
+
+/*chute des pions*/
+@keyframes drop {
+    0% {
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.cell.red,
+.cell.yellow {
+    animation: drop 0.5s ease-out;
+}
+
+
